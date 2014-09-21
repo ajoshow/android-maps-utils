@@ -17,15 +17,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         mListView = (ViewGroup) findViewById(R.id.list);
 
-        addDemo("Clustering", ClusteringDemoActivity.class);
         addDemo("Clustering: Custom Look", CustomMarkerClusteringDemoActivity.class);
-        addDemo("Clustering: 2K markers", BigClusteringDemoActivity.class);
-        addDemo("PolyUtil.decode", PolyDecodeDemoActivity.class);
-        addDemo("IconGenerator", IconGeneratorDemoActivity.class);
-        addDemo("SphericalUtil.computeDistanceBetween", DistanceDemoActivity.class);
-        addDemo("Generating tiles", TileProviderAndProjectionDemo.class);
-        addDemo("Heatmaps", HeatmapsDemoActivity.class);
-        addDemo("Heatmaps with Places API", HeatmapsPlacesDemoActivity.class);
     }
 
     private void addDemo(String demoName, Class<? extends Activity> activityClass) {

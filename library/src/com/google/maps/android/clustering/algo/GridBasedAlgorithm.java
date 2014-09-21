@@ -41,6 +41,11 @@ public class GridBasedAlgorithm<T extends ClusterItem> implements Algorithm<T> {
     }
 
     @Override
+    public void replaceItem(T oldItem, T newItem) {
+        throw new UnsupportedOperationException("");
+    }
+
+    @Override
     public Set<? extends Cluster<T>> getClusters(double zoom) {
         long numCells = (long) Math.ceil(256 * Math.pow(2, zoom) / GRID_SIZE);
         SphericalMercatorProjection proj = new SphericalMercatorProjection(numCells);

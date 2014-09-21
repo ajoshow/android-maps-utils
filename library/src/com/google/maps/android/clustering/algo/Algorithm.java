@@ -18,6 +18,8 @@ public interface Algorithm<T extends ClusterItem> {
 
     void removeItem(T item);
 
+    void replaceItem(T oldItem, T newItem);
+
     Set<? extends Cluster<T>> getClusters(double zoom);
 
     Collection<T> getItems();

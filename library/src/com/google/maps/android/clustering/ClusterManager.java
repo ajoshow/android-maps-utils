@@ -135,6 +135,45 @@ public class ClusterManager<T extends ClusterItem> implements GoogleMap.OnCamera
         }
     }
 
+    public void updateItem(T oldItem, T newItem) {
+        mAlgorithmLock.writeLock().lock();
+        try {
+            mAlgorithm.replaceItem(oldItem, newItem);
+        } finally {
+            mAlgorithmLock.writeLock().unlock();
+        }
+    }
+
+    public boolean updateItem(long id, T newItem) {
+        T oldItem = getItem(id);
+        if(oldItem != null) {
+            mAlgorithmLock.writeLock().lock();
+            try {
+                mAlgorithm.replaceItem(oldItem, newItem);
+                return true;
+            } finally {
+                mAlgorithmLock.writeLock().unlock();
+            }
+        }else{
+            return false;
+        }
+    }
+
+    public T getItem(long id) {
+        T o = null;
+        mAlgorithmLock.readLock().lock();
+        try {
+            for(T item : mAlgorithm.getItems()){
+                if(item.getId() == id){
+                    o = item;
+                }
+            }
+        } finally {
+            mAlgorithmLock.readLock().unlock();
+        }
+        return o;
+    }
+
     /**
      * Force a re-cluster. You may want to call this after adding new item(s).
      */
